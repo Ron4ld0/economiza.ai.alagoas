@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: ankane/pgvector:v0.5.1
+    # Note: For PostGIS + pgvector, we ideally need a custom image or an image that has both.
+    # Standard pgvector image from ankane includes postgis if we install it, 
+    # but a better approach is to use a postgis base and install pgvector, or a pre-built combined image.
+    # For now, let's assume this image or we will build it. 
+    # Actually, timescale/timescaledb-ha:pg15 contains both in some distributions, 
+    # but let's use the standard postgres image and install extensions if needed, or simply `pgvector/pgvector:pg16` which supports it.
+    environment:
+      POSTGRES_USER: economiza
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: economizadb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
