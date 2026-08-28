@@ -1,6 +1,6 @@
 # Economiza.Ai Alagoas 🛒📊
 
-O **Economiza.Ai Alagoas** é uma plataforma inteligente e open-source focada em ajudar os consumidores alagoanos a encontrarem os menores preços de produtos de supermercado. Utilizando Inteligência Artificial e Geolocalização, o app cruza milhares de dados de preços para entregar o melhor custo-benefício diretamente no seu celular.
+O **Economiza.Ai Alagoas** é uma plataforma inteligente e focada em ajudar os consumidores alagoanos a encontrarem os menores preços de produtos de supermercado. Utilizando Inteligência Artificial e Geolocalização, o app cruza milhares de dados de preços para entregar o melhor custo-benefício diretamente no seu celular.
 
 ## 🚀 Funcionalidades Principais (MVP)
 
