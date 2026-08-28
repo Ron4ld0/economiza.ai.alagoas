@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   db:
-    image: ankane/pgvector:v0.5.1
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.db
     # Note: For PostGIS + pgvector, we ideally need a custom image or an image that has both.
     # Standard pgvector image from ankane includes postgis if we install it, 
     # but a better approach is to use a postgis base and install pgvector, or a pre-built combined image.
@@ -14,7 +16,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: economizadb
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

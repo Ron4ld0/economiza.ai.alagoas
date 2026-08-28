@@ -43,13 +43,13 @@
 
 ### Implementation for User Story 1
 
-- [ ] T014 [P] [US1] Implement Feed Service logic (ST_DWithin queries) in `backend/src/services/feed_service.py`
-- [ ] T015 [P] [US1] Implement "Preço Recorrente" statistics calculator in `backend/src/services/stats_service.py`
-- [ ] T016 [US1] Create `GET /api/v1/feed` endpoint in `backend/src/api/feed.py` (depends on T014, T015)
-- [ ] T017 [P] [US1] Create Feed Screen UI in `mobile/src/screens/FeedScreen.tsx`
-- [ ] T018 [P] [US1] Create Location Hook (Expo Location) in `mobile/src/hooks/useLocation.ts`
-- [ ] T019 [US1] Integrate Feed Screen with TanStack Query fetching `GET /api/v1/feed`
-- [ ] T020 [US1] Implement offline cache resilience for feed data in TanStack Query configuration
+- [x] T014 [P] [US1] Implement Feed Service logic (ST_DWithin queries) in `backend/src/services/feed_service.py`
+- [x] T015 [P] [US1] Implement "Preço Recorrente" statistics calculator in `backend/src/services/stats_service.py`
+- [x] T016 [US1] Create `GET /api/v1/feed` endpoint in `backend/src/api/feed.py` (depends on T014, T015)
+- [x] T017 [P] [US1] Create Feed Screen UI in `mobile/src/screens/FeedScreen.tsx`
+- [x] T018 [P] [US1] Create Location Hook (Expo Location) in `mobile/src/hooks/useLocation.ts`
+- [x] T019 [US1] Integrate Feed Screen with TanStack Query fetching `GET /api/v1/feed`
+- [x] T020 [US1] Implement offline cache resilience for feed data in TanStack Query configuration
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -63,10 +63,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T021 [P] [US2] Implement Product Price Scanner service in `backend/src/services/product_service.py`
-- [ ] T022 [US2] Create `GET /api/v1/products/{ean}/prices` endpoint in `backend/src/api/products.py`
-- [ ] T023 [P] [US2] Create Barcode Scanner UI (Expo Camera) in `mobile/src/screens/ScannerScreen.tsx`
-- [ ] T024 [US2] Integrate Scanner Screen with `GET /api/v1/products/{ean}/prices` API
+- [x] T021 [P] [US2] Implement Product Price Scanner service in `backend/src/services/product_service.py`
+- [x] T022 [US2] Create `GET /api/v1/products/{ean}/prices` endpoint in `backend/src/api/products.py`
+- [x] T023 [P] [US2] Create Barcode Scanner UI (Expo Camera) in `mobile/src/screens/ScannerScreen.tsx`
+- [x] T024 [US2] Integrate Scanner Screen with `GET /api/v1/products/{ean}/prices` API
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 

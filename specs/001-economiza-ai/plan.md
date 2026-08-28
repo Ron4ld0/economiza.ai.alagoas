@@ -48,6 +48,9 @@ specs/001-economiza-ai/
 └── tasks.md             # Phase 2 output (to be generated)
 ```
 
+**Recent Phase Updates**:
+- **Phase 7 (Polish & UI Refactor)**: Migração total da identidade visual (cores) baseada na logotipo (Azul Primário, Pêssego).
+
 ### Source Code (repository root)
 
 ```text
