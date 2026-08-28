@@ -1,37 +1,43 @@
-# Economiza.AI Alagoas 🛒📊
+# Economiza.Ai Alagoas 🛒📊
 
-O **Economiza.AI Alagoas** é uma plataforma inteligente e open-source para monitoramento e busca de preços de produtos físicos no estado de Alagoas, utilizando dados reais de Notas Fiscais Eletrônicas (NFC-e) disponibilizados publicamente pela SEFAZ-AL.
+O **Economiza.Ai Alagoas** é uma plataforma inteligente e open-source focada em ajudar os consumidores alagoanos a encontrarem os menores preços de produtos de supermercado. Utilizando Inteligência Artificial e Geolocalização, o app cruza milhares de dados de preços para entregar o melhor custo-benefício diretamente no seu celular.
 
-## 🚀 Funcionalidades Principais
-- 📍 **Busca Geoespacial (MVP)**: Encontre os menores preços num raio de 1km a 25km da sua localização.
-- 📸 **Scanner de Código de Barras**: Leia o código de barras (EAN-13) de um produto na sua mão e descubra onde ele está mais barato na região.
-- 🥩 **Cestas Temáticas (Ex: Churrasco)**: Selecione o número de convidados e receba a lista de compras matematicamente otimizada para o menor preço.
-- 🤖 **Assistente de IA**: Converse naturalmente com o assistente (powered by LangChain) para montar listas complexas ou interpretar dados de preços.
+## 🚀 Funcionalidades Principais (MVP)
+
+- 📍 **Feed de Ofertas Próximas**: Motor de busca geoespacial que encontra os produtos essenciais com maior desconto num raio de até 10km da sua localização atual.
+- 🤖 **Assistente de IA Integrado (Gemini)**: Um chatbot inteligente (orquestrado via LangChain) que responde dúvidas sobre economia, realiza chamadas ao banco de dados (Tool Calling) e monta orçamentos dinâmicos.
+- 🥩 **Listas & Cestas Temáticas**: Vai fazer um churrasco? Diga para quantas pessoas e a IA calcula a quantidade exata de ingredientes e onde comprá-los mais barato.
+- 📸 **Scanner de Código de Barras**: Utilize a câmera do celular para escanear produtos direto da prateleira e verificar se estão mais baratos em outro lugar.
+- 🔐 **Autenticação Segura**: Fluxo de login completo com JWT, suportando verificação por E-mail (PIN de 6 dígitos) e Single Sign-On (Google).
 
 ## 🛠 Arquitetura e Tecnologias
-O projeto adota uma arquitetura em Monorepo, separando a API e o aplicativo mobile:
 
-- **Backend (Python)**:
-  - `FastAPI`: API REST de altíssima performance.
-  - `Celery` + `Redis`: Workers em background assíncronos para ingestão massiva dos dados da SEFAZ-AL, respeitando boas práticas para não sobrecarregar os servidores públicos.
-  - `PostgreSQL` + `PostGIS` (Busca de Raio/Coordenadas) + `pgvector` (Buscas Semânticas por IA).
-  - `SQLAlchemy` & `Alembic`: ORM e migrações.
-  
-- **Frontend (Mobile)**:
-  - `React Native` (via Expo): App cross-platform (iOS e Android).
-  - `NativeWind`: Estilização rápida e consistente via TailwindCSS.
-  - `TanStack Query`: Resiliência de rede e cache de memória/AsyncStorage (Offline-first support).
+O projeto adota uma arquitetura em Monorepo, separando a API robusta do aplicativo mobile de alta performance:
+
+### **Backend (Python)**
+- **FastAPI** & **Uvicorn**: API REST de altíssima performance para consumo do frontend.
+- **PostgreSQL** + **PostGIS**: Banco de dados relacional equipado com extensão espacial para consultas de raio e proximidade.
+- **SQLAlchemy** & **Alembic**: Mapeamento Objeto-Relacional (ORM) e controle de migrações estruturais.
+- **LangChain** & **Google Gemini API**: Orquestração do agente de Inteligência Artificial para interpretar linguagem natural e acionar ferramentas (*Agentic AI*).
+- **PyJWT**: Geração e validação de tokens para autenticação stateless.
+
+### **Frontend (Mobile - React Native)**
+- **React Native** (via Expo): App cross-platform nativo para iOS e Android.
+- **NativeWind (Tailwind CSS)**: Estilização rápida, moderna e consistente.
+- **TanStack Query (React Query)**: Gerenciamento de estado de requisições, resiliência de rede e cache em memória otimizado.
+- **React Navigation**: Roteamento por abas (Bottom Tabs) e pilhas de navegação.
+- **Expo Camera & Location**: Acesso aos hardwares nativos do dispositivo (Câmera para código de barras e GPS para ofertas próximas).
 
 ## ⚙️ Como rodar o projeto localmente
 
 ### 1. Requisitos
 - Node.js (v18+) e NPM/Yarn
 - Python (3.10+)
-- Docker e Docker Compose
+- Docker e Docker Compose (para o Banco de Dados)
 - App Expo Go no seu celular (opcional)
 
 ### 2. Infraestrutura Base
-Na raiz do projeto, inicie os containers do banco de dados (PostgreSQL) e do Redis:
+Na raiz do projeto, inicie os containers do banco de dados (PostgreSQL + PostGIS):
 ```bash
 docker-compose up -d
 ```
@@ -41,14 +47,11 @@ Abra um terminal na pasta `backend/`:
 ```bash
 cd backend
 python -m venv venv
-source venv/Scripts/activate  # No Windows
+source venv/Scripts/activate  # No Windows, use: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Crie o arquivo .env contendo a chave da SEFAZ
-# SEFAZ_AL_APP_TOKEN=seu_token_aqui
-
-# Inicie a API
-uvicorn src.main:app --reload
+# Inicie a API na porta 8000
+uv run uvicorn src.main:app --host 0.0.0.0 --reload
 ```
 A API ficará acessível em `http://localhost:8000`.
 
@@ -58,10 +61,10 @@ Abra outro terminal na pasta `mobile/`:
 cd mobile
 npm install
 
-# Inicie o servidor Metro do Expo
-npx expo start
+# Inicie o servidor Metro do Expo (limpando o cache)
+npx expo start -c
 ```
-Escaneie o QR Code usando o Expo Go no seu celular, ou aperte `a` para rodar no Emulador Android.
+Escaneie o QR Code usando o Expo Go no seu celular, ou aperte `a` no terminal para rodar no Emulador Android.
 
 ## 🤝 Como contribuir
-O projeto utiliza a metodologia **SpecKit** para gestão de tarefas e documentação. As tarefas em andamento podem ser acompanhadas pela aba de [Issues](https://github.com/Ron4ld0/economiza.ai.alagoas/issues) no GitHub.
+As tarefas em andamento e o roadmap do projeto podem ser acompanhados na aba de [Issues](https://github.com/Ron4ld0/economiza.ai.alagoas/issues) no GitHub. Contribuições, pull requests e feedbacks são muito bem-vindos!
