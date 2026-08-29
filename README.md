@@ -5,7 +5,7 @@ O **Economiza.Ai Alagoas** é uma plataforma inteligente e focada em ajudar os c
 ## 🚀 Funcionalidades Principais (MVP)
 
 - 📍 **Feed de Ofertas Próximas**: Motor de busca geoespacial que encontra os produtos essenciais com maior desconto num raio de até 10km da sua localização atual.
-- 🤖 **Assistente de IA Integrado (Gemini)**: Um chatbot inteligente (orquestrado via LangChain) que responde dúvidas sobre economia, realiza chamadas ao banco de dados (Tool Calling) e monta orçamentos dinâmicos.
+- 🤖 **Assistente de IA Integrado (Gemini)**: Um chatbot inteligente (alimentado nativamente pela SDK do Google Gemini com Structured Outputs) que responde dúvidas sobre economia, realiza chamadas ao banco de dados (Tool Calling) e monta orçamentos dinâmicos.
 - 🥩 **Listas & Cestas Temáticas**: Vai fazer um churrasco? Diga para quantas pessoas e a IA calcula a quantidade exata de ingredientes e onde comprá-los mais barato.
 - 📸 **Scanner de Código de Barras**: Utilize a câmera do celular para escanear produtos direto da prateleira e verificar se estão mais baratos em outro lugar.
 - 🔐 **Autenticação Segura**: Fluxo de login completo com JWT, suportando verificação por E-mail (PIN de 6 dígitos) e Single Sign-On (Google).
@@ -18,7 +18,7 @@ O projeto adota uma arquitetura em Monorepo, separando a API robusta do aplicati
 - **FastAPI** & **Uvicorn**: API REST de altíssima performance para consumo do frontend.
 - **PostgreSQL** + **PostGIS**: Banco de dados relacional equipado com extensão espacial para consultas de raio e proximidade.
 - **SQLAlchemy** & **Alembic**: Mapeamento Objeto-Relacional (ORM) e controle de migrações estruturais.
-- **LangChain** & **Google Gemini API**: Orquestração do agente de Inteligência Artificial para interpretar linguagem natural e acionar ferramentas (*Agentic AI*).
+- **Google Gemini API**: Agente de Inteligência Artificial implementado nativamente utilizando o recurso de *JSON Structured Outputs* para interpretar linguagem natural de forma ultrarrápida.
 - **PyJWT**: Geração e validação de tokens para autenticação stateless.
 
 ### **Frontend (Mobile - React Native)**
